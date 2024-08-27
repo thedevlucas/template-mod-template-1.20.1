@@ -1,0 +1,14 @@
+{
+  "teleport_sound_effect": {
+    "subtitle": "sounds.template-mod.teleport_sound_effect",
+    "sounds": [
+      "template-mod:teleport_sound_effect"
+    ]
+  },
+  "objective_sound_effect": {
+    "subtitle": "sounds.template-mod.objective_sound_effect",
+    "sounds": [
+      "template-mod:objective_sound_effect"
+    ]
+  }
+}

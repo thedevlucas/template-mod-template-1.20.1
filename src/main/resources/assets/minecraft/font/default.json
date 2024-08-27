@@ -1,0 +1,39 @@
+{
+   "providers":[
+      {
+         "type":"bitmap",
+         "file":"template-mod:font/ranks/papucho.png",
+         "ascent":8,
+         "height":9,
+         "chars":["\u2C22"]
+      },
+      {
+         "type":"bitmap",
+         "file":"template-mod:font/ranks/plebeyo.png",
+         "ascent":8,
+         "height":9,
+         "chars":["\u2C23"]
+      },
+      {
+         "type":"bitmap",
+         "file":"template-mod:font/ranks/mod.png",
+         "ascent":8,
+         "height":9,
+         "chars":["\u2C24"]
+      },
+	  {
+         "type":"bitmap",
+         "file":"template-mod:font/ranks/gl.png",
+         "ascent":8,
+         "height":9,
+         "chars":["\u2C25"]
+      },
+      {
+         "type": "bitmap",
+         "file": "template-mod:font/logo.png",
+         "ascent": 66,
+         "height": 106,
+         "chars":["\u2C26"]
+     }
+   ]
+}
