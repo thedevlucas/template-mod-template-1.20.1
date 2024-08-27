@@ -10,5 +10,11 @@
     "sounds": [
       "template-mod:objective_sound_effect"
     ]
+  },
+  "text": {
+    "subtitle": "sounds.template-mod.text",
+    "sounds": [
+      "template-mod:text"
+    ]
   }
 }

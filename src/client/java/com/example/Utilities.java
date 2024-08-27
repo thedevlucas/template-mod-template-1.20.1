@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.dialogue.DialogueManager;
+import com.example.dialogue.DialogueWindow;
 import com.example.dialogue.IDialogueWindow;
 import com.example.dialogue.ObjectiveWindow;
 import com.example.sound.ModSounds;
@@ -44,8 +45,6 @@ import static team.lodestar.lodestone.registry.client.LodestoneRenderTypeRegistr
 
 public class Utilities {
     private static boolean shouldRender = true;
-    public static final Identifier DEFAULT_SKIN_LOCATION = new Identifier(TemplateMod.MOD_ID,"textures/vfx/noise.png");
-    public static final LodestoneRenderType RENDER_TYPE = createGenericRenderType("additive_block", VertexFormats.POSITION_TEXTURE, VertexFormat.DrawMode.TRIANGLES, builder().setTransparencyState(StateShards.NO_TRANSPARENCY));
 
     public static int rgba(int red, int green, int blue, float alpha) {
         red = Math.max(0, Math.min(255, red));
@@ -99,43 +98,19 @@ public class Utilities {
 
         DialogueManager.addDialogueWindow(new ObjectiveWindow(MinecraftClient.getInstance(), text));
         player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1f);
-
     }
 
-    public static void renderBeam(MatrixStack matrix, float x, float y, float z){
-        VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
-        builder.replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER.getTarget())
-                .setRenderType(RENDER_TYPE)
-                .renderSphere(matrix, 0.5f, 20,20)
-                .setAlpha(1.0F)
-                .setColor(new Color(255));
+    public static void addDialogue(String text, PlayerEntity player) {
+        synchronized (DialogueManager.windows) {
+            for (IDialogueWindow window : DialogueManager.windows) {
+                if (window instanceof DialogueWindow && !window.isDone()) {
+                    DialogueManager.windows.remove(window);
+                    break;
+                }
+            }
+        }
 
-        float halfSize = 5 / 2.0f;
-        matrix.push();
+        DialogueManager.addDialogueWindow(new DialogueWindow(MinecraftClient.getInstance(), text, 5, 100));
 
-        Matrix4f matrix4f = matrix.peek().getPositionMatrix();
-
-        BlockPos startPos = new BlockPos((int) (2 - halfSize), (int) 5, (int) (5 - halfSize));
-        BlockPos endPos = new BlockPos((int) (1 + halfSize), (int) 5 + 300, (int) (5 + halfSize));
-        builder.renderBeam(matrix4f, startPos, endPos, 1);
-        matrix.pop();
-        TemplateMod.LOGGER.info(String.valueOf(startPos));
     }
-
-    public static void spawnParticles() {
-        float time = MinecraftClient.getInstance().world.getTime() + System.currentTimeMillis();
-        Color firstColor = new Color(255);
-        Color secondColor = new Color(0,255,255);
-        ScreenParticleBuilder.create(LodestoneScreenParticleRegistry.STAR, new ScreenParticleHolder())
-                .setTransparencyData(GenericParticleData.create(0.09f*5, 0f).setEasing(Easing.QUINTIC_IN).build())
-                .setScaleData(GenericParticleData.create((float) (1.5f + Math.sin(time * 0.1f) * 0.125f), 0).build())
-                .setColorData(ColorParticleData.create(firstColor, secondColor).setCoefficient(1.25f).build())
-                .setLifetime(6)
-                .setRandomOffset(0.05f)
-                .setScaleData(GenericParticleData.create((float) (1.4f - Math.sin(time * 0.075f) * 0.125f), 0).build())
-                .setColorData(ColorParticleData.create(secondColor, firstColor).build())
-                .spawn(0,0);
-    }
-
-
 }

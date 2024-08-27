@@ -19,7 +19,7 @@ public class ParticleRegister {
     public static final RegistryObject<LodestoneWorldParticleType> TEST_PARTICLE = PARTICLES.register("waypoint", LodestoneWorldParticleType::new);
 
     public static void registerFactories() {
-        ParticleFactoryRegistry.getInstance().register(TEST_PARTICLE.get(), LodestoneWorldParticleType.Factory::new);
+        //ParticleFactoryRegistry.getInstance().register(TEST_PARTICLE.get(), LodestoneWorldParticleType.Factory::new);
     }
 
 

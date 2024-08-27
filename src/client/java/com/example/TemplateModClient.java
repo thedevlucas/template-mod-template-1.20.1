@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.dialogue.DeathWindow;
 import com.example.dialogue.DialogueManager;
+import com.example.dialogue.DialogueWindow;
 import com.example.packets.ModClientPackets;
 import com.example.packets.ModPackets;
 import com.example.packets.ParticlePacket;
@@ -76,9 +77,9 @@ public class TemplateModClient implements ClientModInitializer {
 		UseBlockCallback.EVENT.register((plr, world, hand, hitResult) -> {
 			if (!world.isClient && hand == plr.getActiveHand()) {
 				//spawnNPC((ServerWorld) world, hitResult.getBlockPos());
-				//String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
 				//Utilities.shakeScreen(5, 0.1f, 8f);
-				//DialogueManager.addDialogueWindow(new DialogueWindow(MinecraftClient.getInstance(), "Hello, World!", 5, 100));
+				String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+				Utilities.addDialogue(text, plr);
 
 				Color startingColor = new Color(100, 0, 100);
 				Color endingColor = new Color(0, 100, 200);
@@ -91,7 +92,7 @@ public class TemplateModClient implements ClientModInitializer {
 				if (player != null) {
 					ServerPlayNetworking.send(player, PARTICLE_SPAWN_ID, buf);
 					//Utilities.spawnParticles();
-					Utilities.addObjective("Hello world!", player);
+					//Utilities.addObjective("Hello world!", player);
 					//Utilities.renderBeam(new MatrixStack(), 0,100,0);
 				}
 
