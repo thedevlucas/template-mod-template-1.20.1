@@ -110,7 +110,26 @@ public class Utilities {
             }
         }
 
-        DialogueManager.addDialogueWindow(new DialogueWindow(MinecraftClient.getInstance(), text, 5, 100));
+        int typingSpeed = calculateTypingSpeed(text.length(), 50, 100);
+        DialogueManager.addDialogueWindow(new DialogueWindow(MinecraftClient.getInstance(), text, 5, typingSpeed));
 
+    }
+
+    private static int calculateTypingSpeed(int textLength, int minSpeed, int maxSpeed) {
+        // Definimos umbrales de longitud para ajustar la velocidad
+        int shortTextLengthThreshold = 50;  // Ejemplo de umbral para textos cortos
+        int longTextLengthThreshold = 200;  // Ejemplo de umbral para textos largos
+
+        if (textLength <= shortTextLengthThreshold) {
+            // Si el texto es corto, usar la velocidad de tipeo mínima (lenta)
+            return maxSpeed;
+        } else if (textLength >= longTextLengthThreshold) {
+            // Si el texto es largo, usar la velocidad de tipeo máxima (rápida)
+            return minSpeed;
+        } else {
+            // Interpolar linealmente para longitudes de texto intermedias
+            float fraction = (float) (textLength - shortTextLengthThreshold) / (longTextLengthThreshold - shortTextLengthThreshold);
+            return maxSpeed - (int) (fraction * (maxSpeed - minSpeed));
+        }
     }
 }

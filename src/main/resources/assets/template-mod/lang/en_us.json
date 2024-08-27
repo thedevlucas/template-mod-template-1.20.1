@@ -3,5 +3,6 @@
   "template-mod.rank.plebeyo": "\u2C23",
   "template-mod.rank.mod": "\u2C24",
   "template-mod.rank.gl": "\u2C25",
-  "template-mod.title.logo": "\u2C26"
+  "template-mod.title.logo": "\u2C26",
+  "item.template-mod.objective_debug": "Objective Debug"
 }

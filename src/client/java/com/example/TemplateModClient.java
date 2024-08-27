@@ -3,6 +3,7 @@ package com.example;
 import com.example.dialogue.DeathWindow;
 import com.example.dialogue.DialogueManager;
 import com.example.dialogue.DialogueWindow;
+import com.example.item.ModItems;
 import com.example.packets.ModClientPackets;
 import com.example.packets.ModPackets;
 import com.example.packets.ParticlePacket;
@@ -63,7 +64,7 @@ public class TemplateModClient implements ClientModInitializer {
 		ModSounds.register();
 		//ParticleRegister.registerFactories();
 		//BlackHoleRenderer.init();
-
+		ModItems.registerModItems();
 		HudRenderCallback.EVENT.register(DialogueManager::renderAll);
 
 		ServerLivingEntityEvents.AFTER_DEATH.register(((entity, damageSource) -> {
@@ -78,23 +79,21 @@ public class TemplateModClient implements ClientModInitializer {
 			if (!world.isClient && hand == plr.getActiveHand()) {
 				//spawnNPC((ServerWorld) world, hitResult.getBlockPos());
 				//Utilities.shakeScreen(5, 0.1f, 8f);
-				String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-				Utilities.addDialogue(text, plr);
 
-				Color startingColor = new Color(100, 0, 100);
-				Color endingColor = new Color(0, 100, 200);
-				ParticleBuilderFactory factory = new DefaultParticleBuilderFactory();
-				ParticlePacket packet = new ParticlePacket(hitResult.getBlockPos().toCenterPos(), startingColor.getRGB(), endingColor.getRGB(), factory);
-				PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-				packet.toBytes(buf);
-				ServerPlayerEntity player = (ServerPlayerEntity) plr;
+				//Color startingColor = new Color(100, 0, 100);
+				//Color endingColor = new Color(0, 100, 200);
+				//ParticleBuilderFactory factory = new DefaultParticleBuilderFactory();
+				//ParticlePacket packet = new ParticlePacket(hitResult.getBlockPos().toCenterPos(), startingColor.getRGB(), endingColor.getRGB(), factory);
+				//PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+				//packet.toBytes(buf);
+				//ServerPlayerEntity player = (ServerPlayerEntity) plr;
 
-				if (player != null) {
-					ServerPlayNetworking.send(player, PARTICLE_SPAWN_ID, buf);
+				//if (player != null) {
+					//ServerPlayNetworking.send(player, PARTICLE_SPAWN_ID, buf);
 					//Utilities.spawnParticles();
 					//Utilities.addObjective("Hello world!", player);
 					//Utilities.renderBeam(new MatrixStack(), 0,100,0);
-				}
+				//}
 
 			}
 			return ActionResult.PASS;
