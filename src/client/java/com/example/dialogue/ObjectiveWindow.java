@@ -42,6 +42,7 @@ public class ObjectiveWindow implements IDialogueWindow {
         MatrixStack matrix = context.getMatrices();
         matrix.push();
 
+
         float timeActive = (System.currentTimeMillis() - startTime) / 1000.0F;
         float SCALE_TIME = 0.5F;
 
