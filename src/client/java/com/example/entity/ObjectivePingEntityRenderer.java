@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ObjectivePingEntityRenderer extends EntityRenderer<ObjectivePingEntity> {
-    private static final Identifier TEXTURE = new Identifier(TemplateMod.MOD_ID, "textures/entity/objective_ping.png");
+    private static final Identifier TEXTURE = new Identifier(TemplateMod.MOD_ID, "textures/particle/waypoint.png");
 
     public ObjectivePingEntityRenderer(EntityRendererFactory.Context context) {
         super(context);
