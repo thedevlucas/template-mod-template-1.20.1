@@ -62,7 +62,10 @@ public class TemplateModClient implements ClientModInitializer {
 		ModPackets.registerPackets();
 		ModClientPackets.registerClientPackets();
 		ModSounds.register();
-		//ParticleRegister.registerFactories();
+
+		ParticleRegister.registerFactories();
+		ParticleRegister.init();
+
 		//BlackHoleRenderer.init();
 		ModItems.registerModItems();
 		HudRenderCallback.EVENT.register(DialogueManager::renderAll);
