@@ -25,7 +25,7 @@ public class PingParticle extends SpriteBillboardParticle {
         this.scale = 0.05F;
     }
 
-    public void method_3070() {
+    public void tick() {
         this.scale = 0.05F;
         if (this.maxAge-- <= 0) {
             markDead();
@@ -36,7 +36,7 @@ public class PingParticle extends SpriteBillboardParticle {
         return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    public void method_3074(VertexConsumer buffer, Camera camera, float partialTicks) {
+    public void buildGeometry(VertexConsumer buffer, Camera camera, float partialTicks) {
         Quaternionf quaternionf;
         Vec3d vec3 = camera.getPos();
         float x = (float)(MathHelper.lerp(partialTicks, this.prevPosX, this.x) - vec3.getX());
