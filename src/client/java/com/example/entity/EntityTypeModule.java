@@ -1,7 +1,6 @@
 package com.example.entity;
 
 import com.example.TemplateMod;
-import com.example.particles.ObjectivePingEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;

@@ -1,6 +1,7 @@
-package com.example.particles;
+package com.example.entity;
 
 import com.example.entity.EntityTypeModule;
+import com.example.particles.ParticleRegister;
 import com.example.particles.contracts.ColoredParticleInitialData;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
