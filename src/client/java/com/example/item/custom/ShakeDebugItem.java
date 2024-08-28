@@ -15,7 +15,7 @@ public class ShakeDebugItem extends Item {
     public ActionResult useOnBlock(ItemUsageContext context) {
 
         if (!context.getWorld().isClient) {
-            Utilities.shakeScreen(5, 1.0f, 8.0f);
+            Utilities.shakeScreen(5, 0.1f, 8.0f);
         }
         return ActionResult.SUCCESS;
     }
