@@ -1,5 +1,7 @@
 package com.example.particles;
 
+import com.example.TemplateMod;
+import com.example.TemplateModClient;
 import com.example.particles.types.PingParticleType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -78,7 +80,6 @@ public class PingParticle extends SpriteBillboardParticle {
     @Environment(EnvType.CLIENT)
     public static class DefaultFactory implements ParticleFactory<DefaultParticleType> {
         private final SpriteProvider spriteProvider;
-
         public DefaultFactory(SpriteProvider spriteProvider) {
             this.spriteProvider = spriteProvider;
         }

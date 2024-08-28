@@ -4,6 +4,7 @@ import com.example.dialogue.DeathWindow;
 import com.example.dialogue.DialogueManager;
 import com.example.dialogue.DialogueWindow;
 import com.example.entity.EntityTypeModule;
+import com.example.entity.ObjectivePingEntity;
 import com.example.entity.ObjectivePingEntityRenderer;
 import com.example.item.ModItems;
 import com.example.packets.ModClientPackets;
@@ -29,6 +30,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderPhase;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -49,6 +51,7 @@ import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
 
 import java.awt.*;
 import java.util.Objects;
+import java.util.UUID;
 
 
 import static com.example.packets.ModPackets.PARTICLE_SPAWN_ID;
@@ -85,6 +88,13 @@ public class TemplateModClient implements ClientModInitializer {
 
 		UseBlockCallback.EVENT.register((plr, world, hand, hitResult) -> {
 			if (!world.isClient && hand == plr.getActiveHand()) {
+
+				UUID uuid = UUID.randomUUID();
+				ObjectivePingEntity entity = new ObjectivePingEntity(EntityTypeModule.OBJECTIVE_PING, world);
+				entity.initialize(hitResult.getBlockPos().getX(), hitResult.getBlockPos().getY(), hitResult.getBlockPos().getZ(), 16711680, uuid);
+				world.spawnEntity(entity);
+
+				LOGGER.info("hasta aca funca");
 				//spawnNPC((ServerWorld) world, hitResult.getBlockPos());
 
 				//Color startingColor = new Color(100, 0, 100);

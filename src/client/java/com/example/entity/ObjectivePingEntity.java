@@ -4,6 +4,7 @@ import com.example.entity.EntityTypeModule;
 import com.example.particles.ParticleRegister;
 import com.example.particles.contracts.ColoredParticleInitialData;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
@@ -13,16 +14,22 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.awt.*;
 import java.util.UUID;
 
 public class ObjectivePingEntity extends Entity {
     private static final TrackedData<Integer> COLOR = DataTracker.registerData(ObjectivePingEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private UUID objectiveUUID;
 
-    public ObjectivePingEntity(EntityType<? extends ObjectivePingEntity> entityType, World level) {
-        super(entityType, level);
+    public ObjectivePingEntity(EntityType<? extends ObjectivePingEntity> entityType, World world) {
+        super(entityType, world);
     }
 
+    public void initialize(double x, double y, double z, int color, UUID uuid) {
+        setPosition(x, y, z);
+        setColor(color);
+        this.objectiveUUID = uuid;
+    }
 
     protected void initDataTracker() {
         this.dataTracker.startTracking(COLOR, Integer.valueOf(16711680));
