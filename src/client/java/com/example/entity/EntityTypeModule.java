@@ -21,7 +21,5 @@ public class EntityTypeModule {
         return Registry.register(Registries.ENTITY_TYPE, new Identifier(TemplateMod.MOD_ID, name), entityType);
     }
 
-    public static void register() {
-        // Aquí se pueden realizar otras registraciones necesarias.
-    }
+    public static void register() {}
 }
