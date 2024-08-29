@@ -16,6 +16,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.gl.ShaderProgram;
 import net.minecraft.client.render.*;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -45,8 +46,13 @@ public final class BlackHoleRenderer {
     private static final Uniform3f CAMERA_UP = BLACK_HOLE_SHADER.findUniform3f("CameraUp");
     private static final UniformMat4 INVERSE_TRANSFORM_MATRIX = BLACK_HOLE_SHADER.findUniformMat4("InverseTransformMatrix");
     private static final Matrix4f projectionMatrix = new Matrix4f();
+
     @Nullable
     private static CoreEntity core;
+
+    private static SoundInstance blackHoleSoundInstance = null;
+    private static boolean isPlayingSound = false;
+    private static float lastVolume = 0.0F;
 
     public static void init() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> core = Optional.ofNullable(MinecraftClient.getInstance().player).map(player -> new CoreEntity(player.getType(), player.getWorld())).orElse(null));

@@ -16,5 +16,11 @@
     "sounds": [
       "template-mod:text"
     ]
+  },
+  "black_hole": {
+    "subtitle": "sounds.template-mod.black_hole",
+    "sounds": [
+      "template-mod:black_hole"
+    ]
   }
 }
