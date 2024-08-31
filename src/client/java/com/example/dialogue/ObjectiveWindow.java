@@ -33,7 +33,7 @@ public class ObjectiveWindow implements IDialogueWindow {
     public ObjectiveWindow(MinecraftClient client, String objective) {
         this.client = client;
         this.objective = objective;
-        this.startTime = System.currentTimeMillis();  // Inicializar el tiempo de inicio cuando se crea la ventana
+        this.startTime = System.currentTimeMillis();
     }
 
     @Override
@@ -63,7 +63,6 @@ public class ObjectiveWindow implements IDialogueWindow {
         matrix.pop();
     }
 
-    // Función de easing cúbica (Easing In-Out)
     private float easeInOutCubic(float t) {
         return t < 0.5 ? 2 * t * t : 1 - (float)Math.pow(-2 * t + 2, 2) / 2;
     }
@@ -71,6 +70,6 @@ public class ObjectiveWindow implements IDialogueWindow {
     @Override
     public boolean isDone() {
         long currentTime = System.currentTimeMillis();
-        return (currentTime - startTime >= 5500); // Usa startTime para verificar si han pasado 5.5 segundos
+        return (currentTime - startTime >= 5500);
     }
 }

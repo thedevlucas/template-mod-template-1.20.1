@@ -25,7 +25,7 @@ public class DeathWindow implements IDialogueWindow {
     private final MinecraftClient client;
     private long lastUpdateTime;
     private float totalTickDelta;
-    private float transitionProgress = 0.0f; // Rango de 0.0 a 1.0
+    private float transitionProgress = 0.0f;
     public static final ScreenParticleHolder SCREEN_PARTICLES = new ScreenParticleHolder();
 
     public DeathWindow(MinecraftClient client) {
@@ -38,13 +38,11 @@ public class DeathWindow implements IDialogueWindow {
         int screenWidth = client.getWindow().getScaledWidth();
         int screenHeight = client.getWindow().getScaledHeight();
 
-        int color = 0x80FF0000; // Red
-        int targetColor = 0x00FF0000; // Green
+        int color = 0x80FF0000;
+        int targetColor = 0x00FF0000;
 
-        // Total tick delta is stored in a field, so we can use it later.
         totalTickDelta += tickDelta;
 
-        // "lerp" simply means "linear interpolation", which is a fancy way of saying "blend".
         float lerpedAmount = MathHelper.abs(MathHelper.sin(totalTickDelta / 50F));
         int lerpedColor = ColorHelper.Argb.lerp(lerpedAmount, color, targetColor);
 

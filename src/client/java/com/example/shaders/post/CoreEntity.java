@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 
 public class CoreEntity extends Entity {
     private static final TrackedData<Integer> BREAKING_TICKS = DataTracker.registerData(CoreEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    //private static final RegistryKey<World> creditsKey = RegistryKey.of(RegistryKeys.WORLD, new Identifier("template-mod", "credits"));
 
     public boolean renderedFirstBreakTickEffects = false;
     public ArrayList<Vec3d> cracks = new ArrayList<>();

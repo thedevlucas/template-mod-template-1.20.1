@@ -32,7 +32,6 @@ import java.util.UUID;
 
 public class TemplateModClient implements ClientModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("template-mod");
-	//public static final ScreenParticleHolder SCREEN_PARTICLES = new ScreenParticleHolder();
 
 	@Override
 	public void onInitializeClient() {
@@ -88,14 +87,6 @@ public class TemplateModClient implements ClientModInitializer {
 			}
 			return ActionResult.PASS;
 		});
-	}
-
-	private void spawnNPC(ServerWorld world, BlockPos pos) {
-		VillagerEntity villager = EntityType.VILLAGER.create(world);
-		if (villager != null) {
-			villager.refreshPositionAndAngles(pos, 0.0F, 0.0F);
-			world.spawnEntity(villager);
-		}
 	}
 
 }

@@ -73,7 +73,7 @@ public class Utilities {
         }
 
         DialogueManager.addDialogueWindow(new ObjectiveWindow(MinecraftClient.getInstance(), text));
-        player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1f);
+        player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1.2f);
     }
 
     public static void addDialogue(String text, PlayerEntity player) {
@@ -92,18 +92,14 @@ public class Utilities {
     }
 
     private static int calculateTypingSpeed(int textLength, int minSpeed, int maxSpeed) {
-        // Definimos umbrales de longitud para ajustar la velocidad
-        int shortTextLengthThreshold = 50;  // Ejemplo de umbral para textos cortos
-        int longTextLengthThreshold = 200;  // Ejemplo de umbral para textos largos
+        int shortTextLengthThreshold = 50;
+        int longTextLengthThreshold = 200;
 
         if (textLength <= shortTextLengthThreshold) {
-            // Si el texto es corto, usar la velocidad de tipeo mínima (lenta)
             return maxSpeed;
         } else if (textLength >= longTextLengthThreshold) {
-            // Si el texto es largo, usar la velocidad de tipeo máxima (rápida)
             return minSpeed;
         } else {
-            // Interpolar linealmente para longitudes de texto intermedias
             float fraction = (float) (textLength - shortTextLengthThreshold) / (longTextLengthThreshold - shortTextLengthThreshold);
             return maxSpeed - (int) (fraction * (maxSpeed - minSpeed));
         }

@@ -22,7 +22,7 @@ public class DialogueWindow implements IDialogueWindow {
     private long lastUpdateTime;
     private int currentIndex;
     private boolean textFullyDisplayed;
-    private boolean soundPlayedForLine = false;
+    private Identifier texture = new Identifier(TemplateMod.MOD_ID, "textures/gui/dialogue_frame.png");
 
     public DialogueWindow(MinecraftClient client, String text, int duration, int typingSpeed) {
         this.client = client;
@@ -37,14 +37,17 @@ public class DialogueWindow implements IDialogueWindow {
     @Override
     public void render(DrawContext context, float tickDelta) {
         TextRenderer textRenderer = client.textRenderer;
-        Identifier texture = new Identifier(TemplateMod.MOD_ID, "textures/gui/dialogue_bg.png");
         int screenWidth = client.getWindow().getScaledWidth();
         int screenHeight = client.getWindow().getScaledHeight();
         PlayerEntity plr = MinecraftClient.getInstance().player;
-        int y = (screenHeight - 60);
 
-        context.fill(0, y, screenWidth, y + 60, Utilities.rgba(0, 0, 0, 0.5f));
-        //context.drawTexture(texture, 0,0,0,0, 550,y - 60,screenHeight,y -60);
+        int height = 240;
+        int width = 450;
+        int x = (screenWidth - width) / 2;
+        int y = screenHeight - height - 60;
+
+        context.drawTexture(texture, x, y + 60,0,0, width, height, width, height);
+
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastUpdateTime >= typingSpeed) {
             if (currentIndex < text.length()) {
@@ -52,7 +55,7 @@ public class DialogueWindow implements IDialogueWindow {
                 lastUpdateTime = currentTime;
 
                 // Reproducir sonido cada vez que se añade una nueva letra
-                plr.playSound(ModSounds.TEXT, SoundCategory.PLAYERS, 1f, 1f);
+                plr.playSound(ModSounds.TEXT, SoundCategory.PLAYERS, 0.6f, 1f);
             }
             if (currentIndex >= text.length() && !textFullyDisplayed) {
                 textFullyDisplayed = true;
@@ -60,14 +63,13 @@ public class DialogueWindow implements IDialogueWindow {
         }
 
         String displayedText = text.substring(0, Math.min(currentIndex, text.length()));
-        List<String> lines = Utilities.wrapText(textRenderer, displayedText, screenWidth);
+        List<String> lines = Utilities.wrapText(textRenderer, displayedText, width - 120);
 
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
-            context.drawText(textRenderer, line, 10, y + 10 + i * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
+            context.drawText(textRenderer, line, x + 60, y + height - 10 + i * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
         }
 
-        // No necesitamos restablecer el estado del sonido aquí ya que se reproduce por cada letra
     }
 
 
