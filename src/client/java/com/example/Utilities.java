@@ -17,10 +17,7 @@ import team.lodestar.lodestone.systems.screenshake.ScreenshakeInstance;
 import java.util.ArrayList;
 import java.util.List;
 
-import static team.lodestar.lodestone.registry.client.LodestoneRenderTypeRegistry.createGenericRenderType;
-
 public class Utilities {
-    private static boolean shouldRender = true;
 
     public static int rgba(int red, int green, int blue, float alpha) {
         red = Math.max(0, Math.min(255, red));
@@ -38,7 +35,7 @@ public class Utilities {
         StringBuilder currentLine = new StringBuilder();
         for (String word : words) {
             StringBuilder testLine = new StringBuilder(currentLine);
-            if (testLine.length() > 0) {
+            if (!testLine.isEmpty()) {
                 testLine.append(" ");
             }
             testLine.append(word);
@@ -51,7 +48,7 @@ public class Utilities {
                 currentLine = new StringBuilder(word);
             }
         }
-        if (currentLine.length() > 0) {
+        if (!currentLine.isEmpty()) {
             lines.add(currentLine.toString());
         }
 
@@ -76,7 +73,7 @@ public class Utilities {
         player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1.2f);
     }
 
-    public static void addDialogue(String text, PlayerEntity player) {
+    public static void addDialogue(String text) {
         synchronized (DialogueManager.windows) {
             for (IDialogueWindow window : DialogueManager.windows) {
                 if (window instanceof DialogueWindow && !window.isDone()) {
@@ -86,22 +83,22 @@ public class Utilities {
             }
         }
 
-        int typingSpeed = calculateTypingSpeed(text.length(), 50, 100);
+        int typingSpeed = calculateTypingSpeed(text.length());
         DialogueManager.addDialogueWindow(new DialogueWindow(MinecraftClient.getInstance(), text, 5, typingSpeed));
 
     }
 
-    private static int calculateTypingSpeed(int textLength, int minSpeed, int maxSpeed) {
+    private static int calculateTypingSpeed(int textLength) {
         int shortTextLengthThreshold = 50;
         int longTextLengthThreshold = 200;
 
         if (textLength <= shortTextLengthThreshold) {
-            return maxSpeed;
+            return 100;
         } else if (textLength >= longTextLengthThreshold) {
-            return minSpeed;
+            return 50;
         } else {
             float fraction = (float) (textLength - shortTextLengthThreshold) / (longTextLengthThreshold - shortTextLengthThreshold);
-            return maxSpeed - (int) (fraction * (maxSpeed - minSpeed));
+            return 100 - (int) (fraction * (100 - 50));
         }
     }
 }

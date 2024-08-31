@@ -1,7 +1,6 @@
 package com.example.item;
 
 import com.example.TemplateMod;
-import com.example.TemplateModClient;
 import com.example.item.custom.DialogueDebugItem;
 import com.example.item.custom.ObjectiveDebugItem;
 import com.example.item.custom.ShakeDebugItem;

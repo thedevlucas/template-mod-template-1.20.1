@@ -9,7 +9,6 @@ import com.example.item.ModItems;
 import com.example.packets.ModClientPackets;
 import com.example.packets.ModPackets;
 import com.example.particles.ParticleRegister;
-import com.example.shaders.post.BlackHoleRenderer;
 import com.example.sound.ModSounds;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -17,12 +16,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
@@ -47,8 +42,6 @@ public class TemplateModClient implements ClientModInitializer {
 		//BlackHoleRenderer.init();
 		ModItems.registerModItems();
 		HudRenderCallback.EVENT.register(DialogueManager::renderAll);
-
-		MinecraftClient client = MinecraftClient.getInstance();
 
 		ServerLivingEntityEvents.AFTER_DEATH.register(((entity, damageSource) -> {
 			if (entity instanceof PlayerEntity){

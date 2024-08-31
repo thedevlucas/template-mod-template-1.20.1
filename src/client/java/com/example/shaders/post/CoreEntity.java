@@ -1,21 +1,16 @@
 package com.example.shaders.post;
 
-
-import java.util.ArrayList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class CoreEntity extends Entity {
     private static final TrackedData<Integer> BREAKING_TICKS = DataTracker.registerData(CoreEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
-    public boolean renderedFirstBreakTickEffects = false;
-    public ArrayList<Vec3d> cracks = new ArrayList<>();
 
     public CoreEntity(EntityType<?> entityType, World level) {
         super(entityType, level);
@@ -23,7 +18,7 @@ public class CoreEntity extends Entity {
 
     @Override
     protected void initDataTracker() {
-        this.dataTracker.startTracking(BREAKING_TICKS, Integer.valueOf(0));
+        this.dataTracker.startTracking(BREAKING_TICKS, 0);
     }
 
     @Override
@@ -37,14 +32,11 @@ public class CoreEntity extends Entity {
     }
 
     public int getBreakingTicks() {
-        return ((Integer)this.dataTracker.get(BREAKING_TICKS)).intValue();
+        return this.dataTracker.get(BREAKING_TICKS);
     }
 
     public void setBreakingTicks(int size) {
-        this.dataTracker.set(BREAKING_TICKS, Integer.valueOf(size));
+        this.dataTracker.set(BREAKING_TICKS, size);
     }
 
-    public void incrementBreakingTicks() {
-        this.dataTracker.set(BREAKING_TICKS, Integer.valueOf(getBreakingTicks() + 1));
-    }
 }

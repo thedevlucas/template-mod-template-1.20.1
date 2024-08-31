@@ -1,7 +1,5 @@
 package com.example.particles;
 
-import com.example.TemplateMod;
-import com.example.TemplateModClient;
 import com.example.particles.types.PingParticleType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

@@ -1,10 +1,8 @@
 package com.example.entity;
 
-import com.example.entity.EntityTypeModule;
 import com.example.particles.ParticleRegister;
 import com.example.particles.contracts.ColoredParticleInitialData;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
@@ -14,7 +12,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.awt.*;
 import java.util.UUID;
 
 public class ObjectivePingEntity extends Entity {
@@ -32,15 +29,15 @@ public class ObjectivePingEntity extends Entity {
     }
 
     protected void initDataTracker() {
-        this.dataTracker.startTracking(COLOR, Integer.valueOf(16711680));
+        this.dataTracker.startTracking(COLOR, 16711680);
     }
 
     public int getColor() {
-        return ((Integer)this.dataTracker.get(COLOR)).intValue();
+        return this.dataTracker.get(COLOR);
     }
 
     public void setColor(int color) {
-        this.dataTracker.set(COLOR, Integer.valueOf(color));
+        this.dataTracker.set(COLOR, color);
     }
 
     protected void readCustomDataFromNbt(NbtCompound compound) {

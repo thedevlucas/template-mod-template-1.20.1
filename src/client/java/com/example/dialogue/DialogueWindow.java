@@ -8,9 +8,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class DialogueWindow implements IDialogueWindow {
     private long lastUpdateTime;
     private int currentIndex;
     private boolean textFullyDisplayed;
-    private Identifier texture = new Identifier(TemplateMod.MOD_ID, "textures/gui/dialogue_frame.png");
+    private final Identifier texture = new Identifier(TemplateMod.MOD_ID, "textures/gui/dialogue_frame.png");
 
     public DialogueWindow(MinecraftClient client, String text, int duration, int typingSpeed) {
         this.client = client;
@@ -55,7 +53,9 @@ public class DialogueWindow implements IDialogueWindow {
                 lastUpdateTime = currentTime;
 
                 // Reproducir sonido cada vez que se añade una nueva letra
-                plr.playSound(ModSounds.TEXT, SoundCategory.PLAYERS, 0.6f, 1f);
+                if (plr != null){
+                    plr.playSound(ModSounds.TEXT, SoundCategory.PLAYERS, 0.6f, 1f);
+                }
             }
             if (currentIndex >= text.length() && !textFullyDisplayed) {
                 textFullyDisplayed = true;
@@ -78,6 +78,6 @@ public class DialogueWindow implements IDialogueWindow {
     @Override
     public boolean isDone() {
         long currentTime = System.currentTimeMillis();
-        return textFullyDisplayed && (currentTime - lastUpdateTime >= duration * 1000);
+        return textFullyDisplayed && (currentTime - lastUpdateTime >= duration * 1000L);
     }
 }

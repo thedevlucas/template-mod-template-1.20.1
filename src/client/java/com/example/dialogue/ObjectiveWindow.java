@@ -1,34 +1,17 @@
 package com.example.dialogue;
 
-import com.example.TemplateMod;
-import com.example.TemplateModClient;
-import com.example.Utilities;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
-import org.joml.Matrix4f;
-import team.lodestar.lodestone.registry.client.LodestoneRenderTypeRegistry;
-import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
-import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
-
-import java.awt.*;
 
 public class ObjectiveWindow implements IDialogueWindow {
     private final MinecraftClient client;
-    private long startTime;
-    private String objective;
-    private float totalTick;
+    private final long startTime;
+    private final String objective;
 
     public ObjectiveWindow(MinecraftClient client, String objective) {
         this.client = client;

@@ -16,7 +16,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.gl.ShaderProgram;
 import net.minecraft.client.render.*;
-import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -50,9 +49,6 @@ public final class BlackHoleRenderer {
     @Nullable
     private static CoreEntity core;
 
-    private static SoundInstance blackHoleSoundInstance = null;
-    private static boolean isPlayingSound = false;
-    private static float lastVolume = 0.0F;
 
     public static void init() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> core = Optional.ofNullable(MinecraftClient.getInstance().player).map(player -> new CoreEntity(player.getType(), player.getWorld())).orElse(null));
@@ -74,7 +70,7 @@ public final class BlackHoleRenderer {
 
     private static void setNearPlaneUniforms(Camera camera, float partialTicks) {
         MinecraftClient minecraft = MinecraftClient.getInstance();
-        double windowRatio = minecraft.getWindow().getFramebufferWidth() / minecraft.getWindow().getFramebufferHeight();
+        double windowRatio = (double) minecraft.getWindow().getFramebufferWidth() / minecraft.getWindow().getFramebufferHeight();
         double fov = Math.tan(((float)minecraft.gameRenderer.getFov(camera, partialTicks, true) * 0.017453292F) / 2.0D) * 0.05000000074505806D;
         double finalRatio = fov * windowRatio;
         Vector3f front = camera.getHorizontalPlane().mul(0.05F, new Vector3f());

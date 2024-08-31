@@ -1,32 +1,14 @@
 package com.example.dialogue;
 
-import com.example.TemplateModClient;
-import com.example.Utilities;
-import com.example.particles.ParticleRegister;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
-import team.lodestar.lodestone.handlers.screenparticle.ScreenParticleHandler;
-import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;
-import team.lodestar.lodestone.registry.common.particle.LodestoneScreenParticleRegistry;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.ScreenParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
-import team.lodestar.lodestone.systems.particle.screen.base.ScreenParticle;
-
-import java.awt.*;
-
-import static net.minecraft.util.math.MathHelper.lerp;
 
 public class DeathWindow implements IDialogueWindow {
     private final MinecraftClient client;
-    private long lastUpdateTime;
+    private final long lastUpdateTime;
     private float totalTickDelta;
-    private float transitionProgress = 0.0f;
-    public static final ScreenParticleHolder SCREEN_PARTICLES = new ScreenParticleHolder();
 
     public DeathWindow(MinecraftClient client) {
         this.client = client;

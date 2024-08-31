@@ -1,16 +1,13 @@
 package com.example.dialogue;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Timer;
 
 public class DialogueManager {
     public static final List<IDialogueWindow> windows = Collections.synchronizedList(new LinkedList<>());
-    private static Timer timer = new Timer();
 
     public static void addDialogueWindow(IDialogueWindow window) {
         synchronized (windows) {

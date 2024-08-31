@@ -6,10 +6,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-
-
 import java.awt.*;
+
 public class ParticlePacket {
     private final Vec3d position;
     private final int startingColor;
