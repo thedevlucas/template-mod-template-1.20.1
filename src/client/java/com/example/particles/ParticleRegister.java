@@ -15,7 +15,7 @@ public interface ParticleRegister {
     public static final PingParticleType PING = new PingParticleType(true);
 
     static void init() {
-        initParticles(bind(Registries.PARTICLE_TYPE));
+        initParticles(bind());
     }
 
     static void registerFactories() {
@@ -26,10 +26,8 @@ public interface ParticleRegister {
         registry.accept(PING, new Identifier(TemplateMod.MOD_ID, "waypoint"));
     }
 
-    private static <T> BiConsumer<T, Identifier> bind(Registry<? super T> registry) {
-        return (t, id) -> Registry.register(registry, id, t);
+    private static <T> BiConsumer<T, Identifier> bind() {
+        return (t, id) -> Registry.register((Registry<? super T>) Registries.PARTICLE_TYPE, id, t);
     }
-
-
 
 }

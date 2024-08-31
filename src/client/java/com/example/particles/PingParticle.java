@@ -12,7 +12,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
-import org.joml.Quaternionfc;
 import org.joml.Vector3f;
 import team.lodestar.lodestone.systems.easing.Easing;
 
@@ -46,14 +45,14 @@ public class PingParticle extends SpriteBillboardParticle {
         if (this.angle == 0.0F) {
             quaternionf = camera.getRotation();
         } else {
-            quaternionf = new Quaternionf((Quaternionfc)camera.getRotation());
+            quaternionf = new Quaternionf(camera.getRotation());
             quaternionf.rotateZ(MathHelper.lerp(partialTicks, this.prevAngle, this.angle));
         }
         Vector3f[] vector3fs = { new Vector3f(-1.0F, -1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(1.0F, -1.0F, 0.0F) };
         float i = getSize(partialTicks);
         for (int j = 0; j < 4; j++) {
             Vector3f vector3f = vector3fs[j];
-            vector3f.rotate((Quaternionfc)quaternionf);
+            vector3f.rotate(quaternionf);
             vector3f.mul(i);
             vector3f.mul(d);
             vector3f.add(x, y, z);
@@ -85,12 +84,13 @@ public class PingParticle extends SpriteBillboardParticle {
         @Nullable
         public Particle createParticle(DefaultParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
             PingParticle instance = new PingParticle(world, x, y, z, this.spriteProvider);
-            if (parameters instanceof PingParticleType) { PingParticleType pingParameters = (PingParticleType)parameters; if (pingParameters.initialData != null) {
+            if (parameters instanceof PingParticleType pingParameters) {
+                if (pingParameters.initialData != null) {
                 instance.red = (pingParameters.initialData.color >> 16 & 0xFF) / 255.0F;
                 instance.green = (pingParameters.initialData.color >> 8 & 0xFF) / 255.0F;
                 instance.blue = (pingParameters.initialData.color & 0xFF) / 255.0F;
             }  }
-            return (Particle) instance;
+            return instance;
         }
     }
 }
