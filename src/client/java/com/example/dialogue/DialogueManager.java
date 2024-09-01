@@ -1,5 +1,7 @@
 package com.example.dialogue;
 
+import com.example.Utilities;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 
 import java.util.Collections;
@@ -27,6 +29,10 @@ public class DialogueManager {
             if (window.isDone()) {
                 synchronized (windows) {
                     windows.remove(window);
+                }
+
+                if (window instanceof DialogueWindow){
+                    Utilities.toggleRender(true, MinecraftClient.getInstance());
                 }
             }
         }

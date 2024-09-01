@@ -44,6 +44,8 @@ public class DialogueWindow implements IDialogueWindow {
         int x = (screenWidth - width) / 2;
         int y = screenHeight - height - 60;
 
+        Utilities.toggleRender(false, client);
+
         context.drawTexture(texture, x, y + 60,0,0, width, height, width, height);
 
         long currentTime = System.currentTimeMillis();
@@ -71,9 +73,6 @@ public class DialogueWindow implements IDialogueWindow {
         }
 
     }
-
-
-
 
     @Override
     public boolean isDone() {

@@ -1,6 +1,7 @@
 package com.example.item.custom;
 
 import com.example.Utilities;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -9,7 +9,6 @@ import com.example.item.ModItems;
 import com.example.packets.ModClientPackets;
 import com.example.packets.ModPackets;
 import com.example.particles.ParticleRegister;
-import com.example.shaders.post.BlackHoleRenderer;
 import com.example.sound.ModSounds;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -42,6 +41,7 @@ public class TemplateModClient implements ClientModInitializer {
 
 		//BlackHoleRenderer.init();
 		ModItems.registerModItems();
+
 		HudRenderCallback.EVENT.register(DialogueManager::renderAll);
 
 		ServerLivingEntityEvents.AFTER_DEATH.register(((entity, damageSource) -> {
@@ -81,6 +81,8 @@ public class TemplateModClient implements ClientModInitializer {
 			}
 			return ActionResult.PASS;
 		});
+
 	}
+
 
 }

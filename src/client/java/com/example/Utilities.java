@@ -7,6 +7,7 @@ import com.example.dialogue.ObjectiveWindow;
 import com.example.sound.ModSounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.option.ChatVisibility;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -18,6 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utilities {
+    public static boolean shouldRender = true;
+
+    public static void toggleRender(boolean value, MinecraftClient client) {
+        shouldRender = value; // Cambia el estado entre true y false
+        if (!value){
+            client.options.getChatVisibility().setValue(ChatVisibility.HIDDEN);
+        } else {
+            client.options.getChatVisibility().setValue(ChatVisibility.FULL);
+        }
+    }
 
     public static int rgba(int red, int green, int blue, float alpha) {
         red = Math.max(0, Math.min(255, red));
@@ -83,8 +94,10 @@ public class Utilities {
             }
         }
 
+
         int typingSpeed = calculateTypingSpeed(text.length());
         DialogueManager.addDialogueWindow(new DialogueWindow(MinecraftClient.getInstance(), text, 5, typingSpeed));
+        
 
     }
 
