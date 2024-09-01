@@ -49,7 +49,7 @@ public class ObjectiveFailed implements IDialogueWindow {
         matrix.translate(currentX - x - width - 10, 0, 0);
 
         context.drawTexture(failed_bar, x, 50, 0, 0, width, 6, width, 6);
-        context.drawTextWithShadow(client.textRenderer, "ᴍɪssɪᴏɴ ғᴀɪɪʟᴇᴅ", descriptionX, 35, 0xFFFFFFFF);
+        context.drawTextWithShadow(client.textRenderer, "ᴍɪssɪᴏɴ ғᴀɪʟᴇᴅ", descriptionX, 35, 0xFFFFFFFF);
 
         matrix.pop();
     }
