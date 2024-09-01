@@ -1,13 +1,11 @@
 package com.example.dialogue;
 
 import com.example.TemplateMod;
+
 import com.example.TemplateModClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -32,8 +30,9 @@ public class ObjectiveWindow implements IDialogueWindow {
         float timeActive = (System.currentTimeMillis() - startTime) / 1000.0F;
         float SCALE_TIME = 2F;
 
-        if (timeActive >= 8.0F) {
-            progress = MathHelper.clamp(1.0f - (timeActive - 3.0F) / SCALE_TIME, 0.0F, 1.0F);
+
+        if (timeActive >= 8) {
+            progress = MathHelper.clamp(1.0F - (timeActive - 8.0F) / SCALE_TIME, 0.0F, 1.0F);
         } else {
             progress = MathHelper.clamp(timeActive / 3.0F, 0.0F, 1.0F);
         }
