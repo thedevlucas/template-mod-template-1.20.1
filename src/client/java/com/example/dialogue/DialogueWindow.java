@@ -69,8 +69,11 @@ public class DialogueWindow implements IDialogueWindow {
 
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
-            context.drawText(textRenderer, line, x + 60, y + height - 10 + i * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
+
+            context.drawText(textRenderer, line, x + 60, y + height + 5 + i * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
         }
+
+        context.drawText(textRenderer, "EL PAPUNGO", x + 60, y + height - 1 * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
 
     }
 

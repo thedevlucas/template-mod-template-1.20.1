@@ -80,7 +80,7 @@ public class Utilities {
             }
         }
 
-        DialogueManager.addDialogueWindow(new ObjectiveWindow(MinecraftClient.getInstance(), text));
+        DialogueManager.addDialogueWindow(new ObjectiveWindow(MinecraftClient.getInstance(), toSmallCaps(text)));
         player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1.2f);
     }
 
@@ -112,6 +112,57 @@ public class Utilities {
         } else {
             float fraction = (float) (textLength - shortTextLengthThreshold) / (longTextLengthThreshold - shortTextLengthThreshold);
             return 100 - (int) (fraction * (100 - 50));
+        }
+    }
+
+    public static String toSmallCaps(String text) {
+        StringBuilder smallCapsText = new StringBuilder();
+
+        for (char c : text.toCharArray()) {
+            if (Character.isLowerCase(c)) {
+                // Convierte a Small Caps si es una letra minúscula
+                smallCapsText.append(convertToSmallCaps(c));
+            } else if (Character.isUpperCase(c)) {
+                // Convierte mayúsculas a su equivalente en Small Caps (a minúsculas primero)
+                smallCapsText.append(convertToSmallCaps(Character.toLowerCase(c)));
+            } else {
+                // Mantiene los caracteres que no son letras
+                smallCapsText.append(c);
+            }
+        }
+
+        return smallCapsText.toString();
+    }
+
+    private static char convertToSmallCaps(char c) {
+        switch (c) {
+            case 'a': return 'ᴀ';
+            case 'b': return 'ʙ';
+            case 'c': return 'ᴄ';
+            case 'd': return 'ᴅ';
+            case 'e': return 'ᴇ';
+            case 'f': return 'ғ';
+            case 'g': return 'ɢ';
+            case 'h': return 'ʜ';
+            case 'i': return 'ɪ';
+            case 'j': return 'ᴊ';
+            case 'k': return 'ᴋ';
+            case 'l': return 'ʟ';
+            case 'm': return 'ᴍ';
+            case 'n': return 'ɴ';
+            case 'o': return 'ᴏ';
+            case 'p': return 'ᴘ';
+            case 'q': return 'ǫ';
+            case 'r': return 'ʀ';
+            case 's': return 's';
+            case 't': return 'ᴛ';
+            case 'u': return 'ᴜ';
+            case 'v': return 'ᴠ';
+            case 'w': return 'ᴡ';
+            case 'x': return 'x';
+            case 'y': return 'ʏ';
+            case 'z': return 'ᴢ';
+            default: return c;
         }
     }
 }

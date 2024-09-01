@@ -15,6 +15,6 @@ public class TemplateMod implements ModInitializer {
 	public void onInitialize() {
 		ServerPlayConnectionEvents.JOIN.register(((handler, sender, server) -> server.getGameRules().get(GameRules.DO_IMMEDIATE_RESPAWN).set(true,server)));
 
-		LOGGER.info(MOD_ID + "Server side loaded successfully.");
+		LOGGER.info(MOD_ID + " Server side loaded successfully.");
 	}
 }

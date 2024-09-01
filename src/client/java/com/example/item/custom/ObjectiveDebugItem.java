@@ -20,7 +20,7 @@ public class ObjectiveDebugItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
         if (!world.isClient) {
-            Utilities.addObjective("Hello world!", player);
+            Utilities.addObjective("interact with villagers ", player);
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, player.getStackInHand(hand));
     }

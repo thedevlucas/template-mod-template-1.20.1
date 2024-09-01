@@ -1,17 +1,20 @@
 package com.example.dialogue;
 
+import com.example.TemplateMod;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 public class ObjectiveWindow implements IDialogueWindow {
     private final MinecraftClient client;
     private final long startTime;
     private final String objective;
+    private final Identifier texture = new Identifier(TemplateMod.MOD_ID, "textures/gui/objective_status/norml_and_current_mission_bar.png");
 
     public ObjectiveWindow(MinecraftClient client, String objective) {
         this.client = client;
@@ -23,32 +26,40 @@ public class ObjectiveWindow implements IDialogueWindow {
     public void render(DrawContext context, float tickDelta) {
         int screenWidth = client.getWindow().getScaledWidth();
         MatrixStack matrix = context.getMatrices();
-        matrix.push();
-
 
         float timeActive = (System.currentTimeMillis() - startTime) / 1000.0F;
-        float SCALE_TIME = 0.5F;
+        float SCALE_TIME = 2F;
 
-        float scaleProg = MathHelper.clamp(1.0F - (timeActive / SCALE_TIME), 0.0F, 1.0F);
-        float easedScaleProg = easeInOutCubic(scaleProg);
-        float scale = 1.0F + 1.5F * easedScaleProg;
+        float progress = MathHelper.clamp(timeActive / SCALE_TIME, 0.0F, 1.0F);
+        float easedProgress = easeInOutElastic(progress);
 
-        matrix.translate(screenWidth / 2.0F, 10.0F, 0.0F);
-        matrix.scale(scale, scale, 1.0F);
+        int width = 160;
+        int x = screenWidth - width - 20;
 
-        MutableText displayText = Text.translatable("Objective: ").append(Text.literal(objective).setStyle(Style.EMPTY.withColor(8387839)));
-        int textWidth = client.textRenderer.getWidth(displayText);
+        int initialX = screenWidth + 200;
+        int targetX = x + width + 10;
+        int currentX = initialX + (int)((targetX - initialX) * easedProgress);
+        int descriptionX = x + width - client.textRenderer.getWidth(this.objective);
 
-        int xPosition = -textWidth / 2;
-        int yPosition = 0;
-        context.drawTextWithShadow(client.textRenderer, displayText, xPosition, yPosition, 0xFFFFFFFF);
+        matrix.push();
+        matrix.translate(currentX - x - width - 10, 0, 0);
+
+        context.drawTexture(texture, x, 50, 0, 0, width, 5, width, 10);
+        context.drawTextWithShadow(client.textRenderer, "ɴᴇᴡ ᴍɪssɪᴏɴ", x + width - 60, 35, 0xFFFFFFFF);
+        context.drawTextWithShadow(client.textRenderer, this.objective, descriptionX, 60, 0xFFFFFFFF);
 
         matrix.pop();
     }
 
-    private float easeInOutCubic(float t) {
-        return t < 0.5 ? 2 * t * t : 1 - (float)Math.pow(-2 * t + 2, 2) / 2;
+    private float easeInOutElastic(float t) {
+        float c5 = (2 * (float)Math.PI) / 4.5f;
+
+        return t == 0 ? 0 :
+                t == 1 ? 1 :
+                        t < 0.5 ? -(float)Math.pow(2, 20 * t - 10) * (float)Math.sin((20 * t - 11.125) * c5) / 2 :
+                                (float)Math.pow(2, -20 * t + 10) * (float)Math.sin((20 * t - 11.125) * c5) / 2 + 1;
     }
+
 
     @Override
     public boolean isDone() {
