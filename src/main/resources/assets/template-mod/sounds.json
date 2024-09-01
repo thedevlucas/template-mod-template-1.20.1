@@ -11,6 +11,24 @@
       "template-mod:objective_sound_effect"
     ]
   },
+  "objective_failed_sound": {
+    "subtitle": "sounds.template-mod.objective_failed_sound",
+    "sounds": [
+      "template-mod:objective_failed_sound"
+    ]
+  },
+  "objective_complete_sound": {
+    "subtitle": "sounds.template-mod.objective_complete_sound",
+    "sounds": [
+      "template-mod:objective_complete_sound"
+    ]
+  },
+  "swoosh_sound_effect": {
+    "subtitle": "sounds.template-mod.swoosh_sound_effect",
+    "sounds": [
+      "template-mod:swoosh_sound_effect"
+    ]
+  },
   "text": {
     "subtitle": "sounds.template-mod.text",
     "sounds": [

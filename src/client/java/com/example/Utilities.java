@@ -1,9 +1,6 @@
 package com.example;
 
-import com.example.dialogue.DialogueManager;
-import com.example.dialogue.DialogueWindow;
-import com.example.dialogue.IDialogueWindow;
-import com.example.dialogue.ObjectiveWindow;
+import com.example.dialogue.*;
 import com.example.sound.ModSounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -73,7 +70,7 @@ public class Utilities {
     public static void addObjective(String text, PlayerEntity player){
         synchronized (DialogueManager.windows) {
             for (IDialogueWindow window : DialogueManager.windows) {
-                if (window instanceof ObjectiveWindow && !window.isDone()) {
+                if (window instanceof ObjectiveWindow && !window.isDone() || window instanceof ObjectiveFailed || window instanceof ObjectiveComplete) {
                     DialogueManager.windows.remove(window);
                     break;
                 }
@@ -81,7 +78,40 @@ public class Utilities {
         }
 
         DialogueManager.addDialogueWindow(new ObjectiveWindow(MinecraftClient.getInstance(), toSmallCaps(text)));
+        player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.SWOOSH_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1.2f);
         player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1.2f);
+
+
+    }
+
+    public static void addCompletedObjective(PlayerEntity player){
+        synchronized (DialogueManager.windows) {
+            for (IDialogueWindow window : DialogueManager.windows) {
+                if (window instanceof ObjectiveComplete && !window.isDone() || window instanceof ObjectiveWindow || window instanceof ObjectiveFailed) {
+                    DialogueManager.windows.remove(window);
+                    break;
+                }
+            }
+        }
+
+        DialogueManager.addDialogueWindow(new ObjectiveComplete(MinecraftClient.getInstance()));
+        player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.SWOOSH_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1.2f);
+        player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_COMPLETE_SOUND, SoundCategory.PLAYERS, 1f, 1.2f);
+    }
+
+    public static void addOFailedbjective(PlayerEntity player){
+        synchronized (DialogueManager.windows) {
+            for (IDialogueWindow window : DialogueManager.windows) {
+                if (window instanceof ObjectiveFailed && !window.isDone() || window instanceof ObjectiveWindow || window instanceof ObjectiveComplete) {
+                    DialogueManager.windows.remove(window);
+                    break;
+                }
+            }
+        }
+
+        DialogueManager.addDialogueWindow(new ObjectiveFailed(MinecraftClient.getInstance()));
+        player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.SWOOSH_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1.2f);
+        player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_FAILED_SOUND, SoundCategory.PLAYERS, 1f, 1.2f);
     }
 
     public static void addDialogue(String text) {
@@ -93,7 +123,6 @@ public class Utilities {
                 }
             }
         }
-
 
         int typingSpeed = calculateTypingSpeed(text.length());
         DialogueManager.addDialogueWindow(new DialogueWindow(MinecraftClient.getInstance(), text, 5, typingSpeed));
@@ -135,34 +164,34 @@ public class Utilities {
     }
 
     private static char convertToSmallCaps(char c) {
-        switch (c) {
-            case 'a': return 'ᴀ';
-            case 'b': return 'ʙ';
-            case 'c': return 'ᴄ';
-            case 'd': return 'ᴅ';
-            case 'e': return 'ᴇ';
-            case 'f': return 'ғ';
-            case 'g': return 'ɢ';
-            case 'h': return 'ʜ';
-            case 'i': return 'ɪ';
-            case 'j': return 'ᴊ';
-            case 'k': return 'ᴋ';
-            case 'l': return 'ʟ';
-            case 'm': return 'ᴍ';
-            case 'n': return 'ɴ';
-            case 'o': return 'ᴏ';
-            case 'p': return 'ᴘ';
-            case 'q': return 'ǫ';
-            case 'r': return 'ʀ';
-            case 's': return 's';
-            case 't': return 'ᴛ';
-            case 'u': return 'ᴜ';
-            case 'v': return 'ᴠ';
-            case 'w': return 'ᴡ';
-            case 'x': return 'x';
-            case 'y': return 'ʏ';
-            case 'z': return 'ᴢ';
-            default: return c;
-        }
+        return switch (c) {
+            case 'a' -> 'ᴀ';
+            case 'b' -> 'ʙ';
+            case 'c' -> 'ᴄ';
+            case 'd' -> 'ᴅ';
+            case 'e' -> 'ᴇ';
+            case 'f' -> 'ғ';
+            case 'g' -> 'ɢ';
+            case 'h' -> 'ʜ';
+            case 'i' -> 'ɪ';
+            case 'j' -> 'ᴊ';
+            case 'k' -> 'ᴋ';
+            case 'l' -> 'ʟ';
+            case 'm' -> 'ᴍ';
+            case 'n' -> 'ɴ';
+            case 'o' -> 'ᴏ';
+            case 'p' -> 'ᴘ';
+            case 'q' -> 'ǫ';
+            case 'r' -> 'ʀ';
+            case 's' -> 's';
+            case 't' -> 'ᴛ';
+            case 'u' -> 'ᴜ';
+            case 'v' -> 'ᴠ';
+            case 'w' -> 'ᴡ';
+            case 'x' -> 'x';
+            case 'y' -> 'ʏ';
+            case 'z' -> 'ᴢ';
+            default -> c;
+        };
     }
 }

@@ -10,16 +10,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
-public class ObjectiveWindow implements IDialogueWindow {
+public class ObjectiveFailed implements IDialogueWindow {
     private final MinecraftClient client;
     private final long startTime;
-    private final String objective;
-    private final Identifier normal_bar = new Identifier(TemplateMod.MOD_ID, "textures/gui/objective_status/norml_and_current_mission_bar.png");
+    private final Identifier failed_bar = new Identifier(TemplateMod.MOD_ID, "textures/gui/objective_status/failed_mission_bar.png");
     private float progress = 0.0F;
 
-    public ObjectiveWindow(MinecraftClient client, String objective) {
+    public ObjectiveFailed(MinecraftClient client) {
         this.client = client;
-        this.objective = objective;
         this.startTime = System.currentTimeMillis();
     }
 
@@ -30,7 +28,6 @@ public class ObjectiveWindow implements IDialogueWindow {
 
         float timeActive = (System.currentTimeMillis() - startTime) / 1000.0F;
         float SCALE_TIME = 1.5F;
-
 
         if (timeActive >= 8) {
             progress = MathHelper.clamp(1.0F - (timeActive - 8.0F) / SCALE_TIME, 0.0F, 1.0F);
@@ -46,14 +43,13 @@ public class ObjectiveWindow implements IDialogueWindow {
         int initialX = screenWidth + 200;
         int targetX = x + width + 20;
         int currentX = initialX + (int)((targetX - initialX) * easedProgress);
-        int descriptionX = x + width - client.textRenderer.getWidth(this.objective);
+        int descriptionX = x + width - client.textRenderer.getWidth("ᴍɪssɪᴏɴ ғᴀɪɪʟᴇᴅ");
 
         matrix.push();
         matrix.translate(currentX - x - width - 10, 0, 0);
 
-        context.drawTexture(normal_bar, x, 50, 0, 0, width, 6, width, 6);
-        context.drawTextWithShadow(client.textRenderer, "ɴᴇᴡ ᴍɪssɪᴏɴ", x + width - 60, 35, 0xFFFFFFFF);
-        context.drawTextWithShadow(client.textRenderer, this.objective, descriptionX, 60, 0xFFFFFFFF);
+        context.drawTexture(failed_bar, x, 50, 0, 0, width, 6, width, 6);
+        context.drawTextWithShadow(client.textRenderer, "ᴍɪssɪᴏɴ ғᴀɪɪʟᴇᴅ", descriptionX, 35, 0xFFFFFFFF);
 
         matrix.pop();
     }
