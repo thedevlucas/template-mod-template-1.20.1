@@ -51,7 +51,6 @@ public class TemplateModClient implements ClientModInitializer {
 			}
 		}));
 
-
 		UseBlockCallback.EVENT.register((plr, world, hand, hitResult) -> {
 			if (!world.isClient && hand == plr.getActiveHand()) {
 
@@ -59,8 +58,6 @@ public class TemplateModClient implements ClientModInitializer {
 				ObjectivePingEntity entity = new ObjectivePingEntity(EntityTypeModule.OBJECTIVE_PING, world);
 				entity.initialize(hitResult.getBlockPos().getX(), hitResult.getBlockPos().getY(), hitResult.getBlockPos().getZ(), 16711680, uuid);
 				world.spawnEntity(entity);
-
-				LOGGER.info("hasta aca funca");
 				//spawnNPC((ServerWorld) world, hitResult.getBlockPos());
 
 				//Color startingColor = new Color(100, 0, 100);
