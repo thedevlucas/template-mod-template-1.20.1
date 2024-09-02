@@ -61,7 +61,7 @@ public final class BlackHoleRenderer {
                 CAMERA_POSITION.set((float)(camera.getPos().getX() - corePosition.getX()), (float)(camera.getPos().getY() - corePosition.getY()), (float)(camera.getPos().getZ() - corePosition.getZ()));
                 setNearPlaneUniforms(camera, tickDelta);
                 STIME.set(((float)(client.world.getTime() % 2400000L) + tickDelta) / 20.0F);
-                BLACK_HOLE_SCALE.set(Easing.CUBIC_IN.ease(MathHelper.clamp(core.getBreakingTicks() / 400.0F, 0.0F, 1.0F), 1.0F, 400.0F, 1.0F));
+                BLACK_HOLE_SCALE.set(Easing.CUBIC_IN.ease(MathHelper.clamp(core.getBreakingTicks() / 400.0F, 0.0F, 1.0F), 80.0F, 400.0F, 1.0F));
                 BREAKING_PROGRESS.set(Easing.EXPO_IN.ease(MathHelper.clamp(core.getBreakingTicks() / 400.0F, 0.0F, 1.0F), 0.0F, 10.0F, 1.0F));
                 render(matrices, client);
             }
