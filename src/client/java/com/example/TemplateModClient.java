@@ -8,7 +8,6 @@ import com.example.packets.ModPackets;
 import com.example.packets.ParticlePacket;
 import com.example.particles.DefaultParticleBuilderFactory;
 import com.example.particles.ParticleBuilderFactory;
-import com.example.shaders.post.BlackHoleRenderer;
 import com.example.sound.ModSounds;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.ClientModInitializer;

@@ -73,7 +73,7 @@ public class DialogueWindow implements IDialogueWindow {
             context.drawText(textRenderer, line, x + 60, y + height + 5 + i * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
         }
 
-        context.drawText(textRenderer, "EL PAPUNGO", x + 60, y + height - 1 * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
+        context.drawText(textRenderer, Utilities.toSmallCaps("el papungo"), x + 60, y + height - 1 * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
 
     }
 
