@@ -13,7 +13,6 @@ public class FloatingTextEntity extends Entity {
         super(entityType, world);
     }
 
-    // Métodos necesarios para la entidad
     @Override
     protected void initDataTracker() {}
 
@@ -26,10 +25,8 @@ public class FloatingTextEntity extends Entity {
     @Override
     public void tick() {
         super.tick();
-        // Lógica adicional si es necesario
     }
 
-    // Método para configurar la posición de la entidad
     public void setPosition(BlockPos pos) {
         this.setPos(pos.getX(), pos.getY(), pos.getZ());
     }
