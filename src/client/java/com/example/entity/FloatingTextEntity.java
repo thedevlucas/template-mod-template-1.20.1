@@ -2,7 +2,6 @@ package com.example.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-
 import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.nbt.NbtCompound;

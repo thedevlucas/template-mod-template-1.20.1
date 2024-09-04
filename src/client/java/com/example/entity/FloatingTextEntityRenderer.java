@@ -6,7 +6,6 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.RotationAxis;
 import org.joml.Matrix4f;
@@ -19,11 +18,11 @@ public class FloatingTextEntityRenderer extends EntityRenderer<FloatingTextEntit
 
     @Override
     public void render(FloatingTextEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        // Set up rendering for the floating text here
+
         matrices.push();
         matrices.translate(0.5, 2.0, 0.5);
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180.0F)); // Ensure the text faces one direction
-        matrices.scale(0.02F, 0.02F, 0.02F); // Scale the text
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180.0F));
+        matrices.scale(0.02F, 0.02F, 0.02F);
 
         TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
