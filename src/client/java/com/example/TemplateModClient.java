@@ -2,6 +2,9 @@ package com.example;
 
 import com.example.dialogue.DeathWindow;
 import com.example.dialogue.DialogueManager;
+import com.example.entity.FloatingTextEntity;
+import com.example.entity.FloatingTextEntityRenderer;
+import com.example.entity.ModEntities;
 import com.example.item.ModItems;
 import com.example.packets.ModClientPackets;
 import com.example.packets.ModPackets;
@@ -11,6 +14,7 @@ import com.example.particles.ParticleBuilderFactory;
 import com.example.sound.ModSounds;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
@@ -40,8 +44,9 @@ public class TemplateModClient implements ClientModInitializer {
 
 		//BlackHoleRenderer.init();
 		ModItems.registerModItems();
-
 		HudRenderCallback.EVENT.register(DialogueManager::renderAll);
+		EntityRendererRegistry.register(ModEntities.FLOATING_TEXT_ENTITY_TYPE, FloatingTextEntityRenderer::new);
+
 
 		ServerLivingEntityEvents.AFTER_DEATH.register(((entity, damageSource) -> {
 			if (entity instanceof PlayerEntity){
@@ -64,6 +69,10 @@ public class TemplateModClient implements ClientModInitializer {
 				ServerPlayerEntity player = (ServerPlayerEntity) plr;
 
                 ServerPlayNetworking.send(player, PARTICLE_SPAWN_ID, buf);
+
+				FloatingTextEntity entity = new FloatingTextEntity(ModEntities.FLOATING_TEXT_ENTITY_TYPE, world);
+				entity.setPosition(hitResult.getBlockPos()); // Configura la posición después de crear la entidad
+				world.spawnEntity(entity);
 
             }
 			return ActionResult.PASS;
