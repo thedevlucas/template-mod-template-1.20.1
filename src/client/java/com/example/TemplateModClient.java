@@ -72,7 +72,6 @@ public class TemplateModClient implements ClientModInitializer {
 
 				FloatingTextEntity entity = new FloatingTextEntity(ModEntities.FLOATING_TEXT_ENTITY_TYPE, world);
 				entity.setPosition(hitResult.getBlockPos());
-				entity.setText("PORNO GRATIS!");
 				world.spawnEntity(entity);
 
 

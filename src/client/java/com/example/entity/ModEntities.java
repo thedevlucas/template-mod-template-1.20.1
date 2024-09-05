@@ -15,7 +15,7 @@ public class ModEntities {
             Registries.ENTITY_TYPE,
             new Identifier(TemplateMod.MOD_ID, "floating_text"),
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, FloatingTextEntity::new)
-                    .dimensions(EntityDimensions.fixed(1.0F, 0.5F)) // Ajusta las dimensiones como necesites
+                    .dimensions(EntityDimensions.fixed(1.0F, 0.5F))
                     .build()
     );
 }
