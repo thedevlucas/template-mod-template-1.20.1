@@ -54,8 +54,6 @@ public class TemplateModClient implements ClientModInitializer {
 		UseBlockCallback.EVENT.register((plr, world, hand, hitResult) -> {
 			if (!world.isClient && hand == plr.getActiveHand()) {
 
-				//spawnNPC((ServerWorld) world, hitResult.getBlockPos());
-
 				Color startingColor = new Color(100, 0, 100);
 				Color endingColor = new Color(0, 100, 200);
 				ParticleBuilderFactory factory = new DefaultParticleBuilderFactory();
