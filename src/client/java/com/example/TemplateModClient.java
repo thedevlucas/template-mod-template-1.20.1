@@ -26,15 +26,11 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.awt.*;
 
 import static com.example.packets.ModPackets.PARTICLE_SPAWN_ID;
 
 public class TemplateModClient implements ClientModInitializer {
-	public static final Logger LOGGER = LoggerFactory.getLogger("template-mod");
 
 	@Override
 	public void onInitializeClient() {

@@ -19,7 +19,7 @@ public class Utilities {
     public static boolean shouldRender = true;
 
     public static void toggleRender(boolean value, MinecraftClient client) {
-        shouldRender = value; // Cambia el estado entre true y false
+        shouldRender = value;
         if (!value){
             client.options.getChatVisibility().setValue(ChatVisibility.HIDDEN);
         } else {
@@ -149,13 +149,10 @@ public class Utilities {
 
         for (char c : text.toCharArray()) {
             if (Character.isLowerCase(c)) {
-                // Convierte a Small Caps si es una letra minúscula
                 smallCapsText.append(convertToSmallCaps(c));
             } else if (Character.isUpperCase(c)) {
-                // Convierte mayúsculas a su equivalente en Small Caps (a minúsculas primero)
                 smallCapsText.append(convertToSmallCaps(Character.toLowerCase(c)));
             } else {
-                // Mantiene los caracteres que no son letras
                 smallCapsText.append(c);
             }
         }

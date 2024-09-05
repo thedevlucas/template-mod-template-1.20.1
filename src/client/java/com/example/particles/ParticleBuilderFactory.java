@@ -2,7 +2,6 @@ package com.example.particles;
 
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
 import java.awt.*;
 
 public interface ParticleBuilderFactory {

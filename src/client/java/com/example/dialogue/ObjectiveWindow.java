@@ -1,13 +1,10 @@
 package com.example.dialogue;
 
 import com.example.TemplateMod;
-import com.example.sound.ModSounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
 public class ObjectiveWindow implements IDialogueWindow {

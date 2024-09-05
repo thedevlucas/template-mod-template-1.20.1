@@ -3,7 +3,6 @@ package com.example.dialogue;
 import com.example.Utilities;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
