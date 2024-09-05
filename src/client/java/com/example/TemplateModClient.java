@@ -70,9 +70,11 @@ public class TemplateModClient implements ClientModInitializer {
 
                 ServerPlayNetworking.send(player, PARTICLE_SPAWN_ID, buf);
 
-				//FloatingTextEntity entity = new FloatingTextEntity(ModEntities.FLOATING_TEXT_ENTITY_TYPE, world);
-				//entity.setPosition(hitResult.getBlockPos());
-				//world.spawnEntity(entity);
+				FloatingTextEntity entity = new FloatingTextEntity(ModEntities.FLOATING_TEXT_ENTITY_TYPE, world);
+				entity.setPosition(hitResult.getBlockPos());
+				entity.setText("PORNO GRATIS!");
+				world.spawnEntity(entity);
+
 
             }
 			return ActionResult.PASS;

@@ -8,6 +8,8 @@ import net.minecraft.nbt.NbtCompound;
 
 public class FloatingTextEntity extends Entity {
 
+    private String text = "";
+
     public FloatingTextEntity(EntityType<? extends Entity> entityType, World world) {
         super(entityType, world);
     }
@@ -24,6 +26,15 @@ public class FloatingTextEntity extends Entity {
     @Override
     public void tick() {
         super.tick();
+    }
+
+    // Método para establecer el texto personalizado
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return this.text;
     }
 
     public void setPosition(BlockPos pos) {

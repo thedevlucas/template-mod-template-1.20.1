@@ -28,7 +28,9 @@ public class FloatingTextEntityRenderer extends EntityRenderer<FloatingTextEntit
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
         Matrix4f matrix = matrices.peek().getPositionMatrix();
 
-        textRenderer.draw("TETA DURA", -textRenderer.getWidth("TETA DURA") / 2f, 0, 0xFFFFFF, false, matrix, immediate, TextRenderer.TextLayerType.NORMAL, 0, 15728880);
+        String text = entity.getText();
+
+        textRenderer.draw(text, -textRenderer.getWidth(text) / 2f, 0, 0xFFFFFF, false, matrix, immediate, TextRenderer.TextLayerType.NORMAL, 0, 15728880);
         matrices.pop();
     }
 
