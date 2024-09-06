@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 
 public class ModEntities {
 
@@ -18,4 +19,13 @@ public class ModEntities {
                     .dimensions(EntityDimensions.fixed(1.0F, 0.5F))
                     .build()
     );
+
+    public static final EntityType<SphereEntity> SPHERE_ENTITY = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(TemplateMod.MOD_ID, "sphere_entity"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MISC, SphereEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.0F, 0.5F))
+                    .build()
+    );
+
 }

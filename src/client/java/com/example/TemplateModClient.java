@@ -2,9 +2,7 @@ package com.example;
 
 import com.example.dialogue.DeathWindow;
 import com.example.dialogue.DialogueManager;
-import com.example.entity.FloatingTextEntity;
-import com.example.entity.FloatingTextEntityRenderer;
-import com.example.entity.ModEntities;
+import com.example.entity.*;
 import com.example.item.ModItems;
 import com.example.packets.ModClientPackets;
 import com.example.packets.ModPackets;
@@ -42,6 +40,7 @@ public class TemplateModClient implements ClientModInitializer {
 		ModItems.registerModItems();
 		HudRenderCallback.EVENT.register(DialogueManager::renderAll);
 		EntityRendererRegistry.register(ModEntities.FLOATING_TEXT_ENTITY_TYPE, FloatingTextEntityRenderer::new);
+		EntityRendererRegistry.register(ModEntities.SPHERE_ENTITY, SphereEntityRenderer::new);
 
 
 		ServerLivingEntityEvents.AFTER_DEATH.register(((entity, damageSource) -> {
@@ -64,10 +63,13 @@ public class TemplateModClient implements ClientModInitializer {
 
                 ServerPlayNetworking.send(player, PARTICLE_SPAWN_ID, buf);
 
-				FloatingTextEntity entity = new FloatingTextEntity(ModEntities.FLOATING_TEXT_ENTITY_TYPE, world);
-				entity.setPosition(hitResult.getBlockPos());
-				world.spawnEntity(entity);
+				//FloatingTextEntity entity = new FloatingTextEntity(ModEntities.FLOATING_TEXT_ENTITY_TYPE, world);
+				//entity.setPosition(hitResult.getBlockPos());
+				//world.spawnEntity(entity);
 
+				SphereEntity entity2 = new SphereEntity(ModEntities.SPHERE_ENTITY, world);
+				entity2.setPosition(hitResult.getBlockPos());
+				world.spawnEntity(entity2);
 
             }
 			return ActionResult.PASS;
