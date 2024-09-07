@@ -34,10 +34,10 @@ public class DialogueWindow implements IDialogueWindow {
 
     @Override
     public void render(DrawContext context, float tickDelta) {
-        TextRenderer textRenderer = client.textRenderer;
         int screenWidth = client.getWindow().getScaledWidth();
         int screenHeight = client.getWindow().getScaledHeight();
         PlayerEntity plr = MinecraftClient.getInstance().player;
+        TextRenderer textRenderer = client.textRenderer;
 
         int height = 240;
         int width = 450;
@@ -54,7 +54,6 @@ public class DialogueWindow implements IDialogueWindow {
                 currentIndex++;
                 lastUpdateTime = currentTime;
 
-                // Reproducir sonido cada vez que se añade una nueva letra
                 if (plr != null){
                     plr.playSound(ModSounds.TEXT, SoundCategory.PLAYERS, 0.6f, 1f);
                 }
@@ -73,7 +72,7 @@ public class DialogueWindow implements IDialogueWindow {
             context.drawText(textRenderer, line, x + 60, y + height + 5 + i * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
         }
 
-        context.drawText(textRenderer, Utilities.toSmallCaps("el papungo"), x + 60, y + height - 1 * textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
+        context.drawText(textRenderer, Utilities.toSmallCaps("el papungo"), x + 60, y + height - textRenderer.fontHeight, Utilities.rgba(255, 255, 255, 1f), true);
 
     }
 
