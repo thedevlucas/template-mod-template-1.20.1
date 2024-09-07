@@ -1,6 +1,9 @@
 package com.example;
 
 import com.example.dialogue.*;
+import com.example.entity.FloatingTextEntity;
+import com.example.entity.ModEntities;
+import com.example.entity.SphereEntity;
 import com.example.sound.ModSounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -8,6 +11,7 @@ import net.minecraft.client.option.ChatVisibility;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import team.lodestar.lodestone.handlers.ScreenshakeHandler;
 import team.lodestar.lodestone.systems.easing.Easing;
 import team.lodestar.lodestone.systems.screenshake.ScreenshakeInstance;
@@ -112,6 +116,18 @@ public class Utilities {
         DialogueManager.addDialogueWindow(new ObjectiveFailed(MinecraftClient.getInstance()));
         player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.SWOOSH_SOUND_EFFECT, SoundCategory.PLAYERS, 1f, 1.2f);
         player.getWorld().playSound(null, BlockPos.ofFloored(player.getPos()), ModSounds.OBJECTIVE_FAILED_SOUND, SoundCategory.PLAYERS, 1f, 1.2f);
+    }
+
+    public static void addSphere(BlockPos pos, World world){
+        SphereEntity entity2 = new SphereEntity(ModEntities.SPHERE_ENTITY, world);
+        entity2.setPosition(pos.getX(), pos.getY() + 50,pos.getZ());
+        world.spawnEntity(entity2);
+    }
+
+    public static void addTextRender(BlockPos pos, World world){
+        FloatingTextEntity entity = new FloatingTextEntity(ModEntities.FLOATING_TEXT_ENTITY_TYPE, world);
+        entity.setPosition(pos);
+        world.spawnEntity(entity);
     }
 
     public static void addDialogue(String text) {

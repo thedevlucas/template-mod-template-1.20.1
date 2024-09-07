@@ -63,14 +63,6 @@ public class TemplateModClient implements ClientModInitializer {
 
                 ServerPlayNetworking.send(player, PARTICLE_SPAWN_ID, buf);
 
-				//FloatingTextEntity entity = new FloatingTextEntity(ModEntities.FLOATING_TEXT_ENTITY_TYPE, world);
-				//entity.setPosition(hitResult.getBlockPos());
-				//world.spawnEntity(entity);
-
-				SphereEntity entity2 = new SphereEntity(ModEntities.SPHERE_ENTITY, world);
-				entity2.setPosition(hitResult.getBlockPos());
-				world.spawnEntity(entity2);
-
             }
 			return ActionResult.PASS;
 		});

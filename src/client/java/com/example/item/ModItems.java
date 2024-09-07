@@ -4,6 +4,7 @@ import com.example.TemplateMod;
 import com.example.item.custom.DialogueDebugItem;
 import com.example.item.custom.ObjectiveDebugItem;
 import com.example.item.custom.ShakeDebugItem;
+import com.example.item.custom.SphereDebugItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -17,6 +18,8 @@ public class ModItems {
     public static final Item OBJECTIVE_DEBUG = registerItem("objective_debug", new ObjectiveDebugItem(new FabricItemSettings()));
     public static final Item DIALOGUE_DEBUG = registerItem("dialogue_debug", new DialogueDebugItem(new FabricItemSettings()));
     public static final Item SHAKE_DEBUG = registerItem("shake_debug", new ShakeDebugItem(new FabricItemSettings()));
+    public static final Item SPHERE_DEBUG = registerItem("sphere_debug", new SphereDebugItem(new FabricItemSettings()));
+
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(TemplateMod.MOD_ID, name), item);
@@ -26,6 +29,7 @@ public class ModItems {
         entries.add(OBJECTIVE_DEBUG);
         entries.add(DIALOGUE_DEBUG);
         entries.add(SHAKE_DEBUG);
+        entries.add(SPHERE_DEBUG);
     }
 
     public static void registerModItems(){
